@@ -1,0 +1,109 @@
+LABTITLE=: 'A Most Incomprehensible Thing'
+LABAUTHOR=: 'Thomas B. Hickey'
+LABDEPENDS=: 'numeric plot trig viewmat'
+
+NB. =========================================================
+Lab Chapter INTRODUCTION
+NB. =========================================================
+Lab Section A. Purpose and Motavation
+
+This lab is written as a companion to Peter Collier's A Most
+Incomprehensible Thing, second edition, ISBN 978-0-9573894-5-8,
+refered here as AMIT.
+
+)
+PREPARE
+require 'numeric plot trig viewmat'
+PLOT=:'stick,line'&plot
+hist=:'stick'&plot
+surf=:'surface'&plot
+color=:viewmat
+sort=:/:~
+
+border=:1 : 0
+u border~y
+:
+(' ';,.x),.({.;}.)":y,x u/y
+)
+
+NB. =========================================================
+Lab Chapter Foundation mathematics
+
+An interpretation of the notation in AMIT in J
+
+)
+
+NB. =========================================================
+Lab Section 1.2a -- Terms
+)
+NB. Constants
+7
+pi
+
+4^3 NB. Cube
+1.23 NB. Decimal numbers (floating point in J)
+NB. Denominator see Fraction
+NB. Factor.  J has a function q: which computes the prime factors of a given number
+q: 12
+q: 407
+q: 421
+2r3 NB. J has 'rational' numbers that represent fractions
+3 * 2r3 NB. this gives back exactly 2
+_ NB. Infinity (underscore)
+__ NB. Minus inifinity
+0 1 2 3  NB.  Integers
+_1 _2 NB. Negative numbers are indicated by a leading underscore
+3*4 NB. Product
+NB. Square.  There are any number of ways to square a number in J
+3^2  NB. Power
+*: 3  NB. Square
+3*3  NB. Multiplication
+NB. Square root is similar
+3^0.5
+%: 3
+
+NB. =========================================================
+Lab Section 1.2b -- Symbols
+)
+6 = 6 NB. The equals sign '=' test for equality in J, return a boolean (0 or 1)
+6=5
+6=6.0000000000001 NB. By default, J allows some variation
+6 ~: 6  NB.  -. can also be used
+-. 6 = 6
+-4 NB. minus.  Note the result is _4
+4*3 NB. Multiplication
+4%3 NB. Division
+3 < 4 NB. Less than
+3 > 4 NB.  Greater than
+4 <: 4 NB. Less than or equal
+4 >: 4 NB. Greater than or equal 
+! 4 NB. Factorial 4*3*2*1
+*/ 1+i.4  NB. A more complicated way to say factorial
+NB. Derivative d.
+x =: 3
+(x * x) = *: x  NB. Remember that *: x is x squared
+*: d. 1   NB. First derivative of x squared (which is 2*x, or +: x)
+(*: d. 1) x   NB. 2*x = 6
+NB. Use negatives for integration
+(+: d. _1)  NB. returns x squared (*:)
+(+: d. _1) x
+NB. D. can be used for partial derivatives
+
+NB. =========================================================
+Lab Section 1.4 -- Expressions
+)
+f3x =: 3&*  NB. 3x
+x =: i.6
+x,: f3x x  NB. Show 3x for 0 1 2 3 4 5
+
+x =: (i.7)-3
+fxsq =: *:
+x,: fxsq x  NB. Show 3^2 for _3 ... +3
+
+NB. the equation solved for q:
+t =: 6
+   u =: 2
+   v =: 0.3
+   s =: 9
+   3+ (t*(u%v)) - 5*s^0.5
+28
